@@ -223,7 +223,10 @@ class TBinaryProtocol(TProtocolBase):
 
   def readString(self):
     len = self.readI32()
-    str = self.trans.readAll(len).decode('utf-8')
+    try:
+      str = self.trans.readAll(len).decode('utf-8')
+    except:
+      str = self.trans.readAll(len)
     return str
 
 
